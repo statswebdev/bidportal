@@ -13,6 +13,7 @@ use App\Livewire\Dashboard;
 use App\Livewire\Home;
 use App\Livewire\Registrations\BidRegistrations;
 use App\Livewire\Registrations\ViewRegistrations;
+use App\Livewire\Staffs\CreateStaff;
 use App\Livewire\Staffs\EditStaff;
 use App\Livewire\Staffs\ListStaffs;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/settings', Settings::class)->name('settings');
     Route::get('/staffs/edit/{userid}', EditStaff::class)->name('staffs.edit');
     Route::get('/staffs', ListStaffs::class)->name('list-staff');
+    Route::get('/staffs/create', CreateStaff::class)->name('create-staff');
 });
 
 //Route::view('/', 'home', ['name' => 'home']);

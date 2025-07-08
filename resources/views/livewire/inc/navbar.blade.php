@@ -68,8 +68,14 @@
                         <a class="dropdown-item" href="{{route('bids')}}">View Bids</a>
                     </li>
                     @if(Auth::check() && Auth::user()->role === 'admin')
-                    <li class="nav-item">
-                      <a class="nav-link" href="{{route('list-staff')}}">Staff</a>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Staff
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{route('create-staff')}}">Create Staff</a>
+                        <a class="dropdown-item" href="{{route('list-staff')}}">Staff List</a>
+                      </div>
                     </li>
                     @endif
                 </ul>

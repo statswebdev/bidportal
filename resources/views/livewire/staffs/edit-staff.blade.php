@@ -1,7 +1,7 @@
 <div>
     <x-slot name="title">MBS Bid Portal - Edit Staff Information</x-slot>
 
-    <section class="container mt-3">
+    <section class="container mt-6">
             <div class="row">
                 <div class="col-12">
                     @if (session()->has('updated'))
