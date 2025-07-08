@@ -1,4 +1,6 @@
 <div>
+    <x-slot name="title">MBS Bid Portal - Forgot Password</x-slot>
+
     <section class="container d-flex flex-column vh-100">
         <div class="row align-items-center justify-content-center g-0 h-lg-100 py-8">
             <div class="col-lg-5 col-md-8 py-8 py-xl-0">
@@ -28,6 +30,7 @@
                 <div class="card shadow">
                     <!-- Card body -->
                     <div class="card-body p-6">
+                        <a href="#"><img src="https://statisticsmaldives.gov.mv/mbs/wp-content/themes/neon/images/mbslogo2023.svg" class="mb-4 px-6 border-bottom pb-5" alt="logo-icon"></a>
                         <div class="mb-4">
                             <h1 class="mb-1 fw-bold">Forgot Password</h1>
                             <p>Submit your email to send the reset password link</p>

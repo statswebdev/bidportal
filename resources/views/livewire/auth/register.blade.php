@@ -1,4 +1,6 @@
 <div>
+    <x-slot name="title">MBS Bid Portal - Register</x-slot>
+
     <section class="container d-flex flex-column vh-100">
 
 

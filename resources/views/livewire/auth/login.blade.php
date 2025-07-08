@@ -1,4 +1,6 @@
 <div>
+    <x-slot name="title">MBS Bid Portal - Login</x-slot>
+
     <section class="container d-flex flex-column vh-100">
 
         <div class="row align-items-center justify-content-center g-0 h-lg-100">
@@ -33,10 +35,10 @@
                         <div class="mb-4">
                             <h1 class="mb-1 fw-bold text-center">Bid Portal</h1>
                             <h2 class="mb-1 fw-bold">Sign in</h2>
-                            <span>
+                            {{-- <span>
                                 Don’t have an account?
                                 <a href="{{route('register')}}" class="ms-1">Sign up</a>
-                            </span>
+                            </span> --}}
                         </div>
                         <!-- Form -->
                         <form wire:submit.prevent="login">

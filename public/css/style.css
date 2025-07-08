@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'MVTypewriter'; /* You can name this whatever you want */
+    src: url('../fonts/MVTypewriter.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.mvtypewriter {
+    font-family: 'MVTypewriter';
+}

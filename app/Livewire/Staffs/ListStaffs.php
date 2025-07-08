@@ -13,6 +13,9 @@ class ListStaffs extends Component
 
     public function mount()
     {
+        if (Auth::user() && Auth::user()->role === 'staff') {
+            return redirect()->route('dashboard');
+        }
 
         if (Auth::user() && Auth::user()->role === 'admin') {
             $this->users = User::all();

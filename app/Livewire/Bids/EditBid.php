@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class EditBid extends Component
 {
@@ -14,18 +16,25 @@ class EditBid extends Component
 
     public $bid;
     public $description;
+    public $description_mv;
     public $iulaan_number;
     public $phone;
     public $submission_date;
     public $iulaan_pdf;
     public $info_sheet_pdf;
+    public $spec_sheet_pdf;
+    public $supporting_docs;
     public $currentIulaanPdf;
     public $currentInfoSheetPdf;
+    public $currentSpecSheetPdf;
+    public $currentSupportingDocs;
+    public $status;
 
     protected function rules()
     {
         return [
             'description' => 'required|min:3',
+            'description_mv' => 'required|min:3',
             'iulaan_number' => [
                 'required',
                 'string',
@@ -45,21 +54,33 @@ class EditBid extends Component
                 'nullable',
                 'mimes:pdf',
                 'max:3072'
-            ]
+            ],
+            'spec_sheet_pdf' => 'nullable|mimes:pdf|max:3072',
+            'supporting_docs' => 'nullable|mimes:doc,docx|max:3072',
+            'status' => 'required|in:active,inactive,completed',
         ];
     }
 
     public function mount($bidid)
     {
+        if (Auth::user() && Auth::user()->role === 'admin') {
+            return redirect()->route('dashboard');
+        }
+
         $this->bid = Bid::findOrFail($bidid);
         
         // Load existing data
         $this->description = $this->bid->description;
+        $this->description_mv = $this->bid->description_mv;
         $this->iulaan_number = $this->bid->iulaan_number;
         $this->phone = $this->bid->phone;
-        $this->submission_date = $this->bid->submission_date;
+        //$this->submission_date = $this->bid->submission_date;
+        $this->submission_date = Carbon::parse($this->bid->submission_date)->format('Y-m-d\TH:i');
         $this->currentIulaanPdf = $this->bid->iulaan_pdf;
         $this->currentInfoSheetPdf = $this->bid->info_sheet_pdf;
+        $this->currentSpecSheetPdf = $this->bid->spec_sheet_pdf;
+        $this->currentSupportingDocs = $this->bid->supporting_docs;
+        $this->status = $this->bid->status;
     }
 
     public function updateBid()
@@ -86,11 +107,33 @@ class EditBid extends Component
             $this->bid->info_sheet_pdf = $infoSheetPath;
         }
 
+        // Handle spec sheet PDF upload
+        if ($this->spec_sheet_pdf) {
+            // Delete old file if exists
+            if ($this->bid->spec_sheet_pdf) {
+                Storage::disk('public')->delete($this->bid->spec_sheet_pdf);
+            }
+            $specSheetPath = $this->spec_sheet_pdf->store('bids/spec-sheets', 'public');
+            $this->bid->spec_sheet_pdf = $specSheetPath;
+        }
+
+        // Handle supporting docs upload
+        if ($this->supporting_docs) {
+            // Delete old file if exists
+            if ($this->bid->supporting_docs) {
+                Storage::disk('public')->delete($this->bid->supporting_docs);
+            }
+            $supportingdocsPath = $this->supporting_docs->store('bids/supporting-docs', 'public');
+            $this->bid->supporting_docs = $supportingdocsPath;
+        }
+
         // Update other fields
         $this->bid->description = $this->description;
+        $this->bid->description_mv = $this->description_mv;
         $this->bid->iulaan_number = $this->iulaan_number;
         $this->bid->phone = $this->phone;
         $this->bid->submission_date = $this->submission_date;
+        $this->bid->status = $this->status;
 
         $this->bid->save();
 

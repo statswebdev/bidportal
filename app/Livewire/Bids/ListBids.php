@@ -8,10 +8,12 @@ use Livewire\Component;
 class ListBids extends Component
 {
     public $bids = [];
+    public $pastbids = [];
 
     public function mount()
     {
-        $this->bids = Bid::all();
+        $this->bids = Bid::where('status', 'active')->get();
+        $this->pastbids = Bid::where('status', 'completed')->get();
     }
 
     public function render()

@@ -31,4 +31,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'dhiraagu' => [
+        'username' => env('DHIRAAGU_SMS_USERNAME'),
+        'password' => env('DHIRAAGU_SMS_PASSWORD'),
+        'url'      => env('DHIRAAGU_SMS_URL'),
+    ],
+
 ];

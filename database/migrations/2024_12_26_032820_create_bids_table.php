@@ -14,11 +14,15 @@ return new class extends Migration
         Schema::create('bids', function (Blueprint $table) {
             $table->id();
             $table->string('description');
+            $table->string('description_mv');
             $table->string('iulaan_number')->unique();
             $table->string('phone');
-            $table->date('submission_date');
+            $table->datetime('submission_date');
+            $table->string('status')->default('active'); 
             $table->string('iulaan_pdf');
             $table->string('info_sheet_pdf');
+            $table->string('spec_sheet_pdf')->nullable();
+            $table->string('supporting_docs')->nullable();
             $table->timestamps();
         });
     }

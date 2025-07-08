@@ -2,12 +2,19 @@
 
 use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\Login;
+use App\Livewire\Auth\Profile;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\ResetPassword;
+use App\Livewire\Auth\Settings;
 use App\Livewire\Bids\CreateBid;
 use App\Livewire\Bids\EditBid;
 use App\Livewire\Bids\ListBids;
 use App\Livewire\Dashboard;
+use App\Livewire\Home;
+use App\Livewire\Registrations\BidRegistrations;
+use App\Livewire\Registrations\ViewRegistrations;
+use App\Livewire\Staffs\EditStaff;
+use App\Livewire\Staffs\ListStaffs;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +41,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/bids', ListBids::class)->name('bids');
     Route::get('/bids/create', CreateBid::class)->name('bids.create');
     Route::get('/bids/edit/{bidid}', EditBid::class)->name('bids.edit');
+
+    Route::get('/profile', Profile::class)->name('profile');
+    Route::get('/settings', Settings::class)->name('settings');
+    Route::get('/staffs/edit/{userid}', EditStaff::class)->name('staffs.edit');
+    Route::get('/staffs', ListStaffs::class)->name('list-staff');
 });
 
 //Route::view('/', 'home', ['name' => 'home']);
-Route::view('/', 'home')->name('home');
+Route::get('/', Home::class)->name('home');
+
+Route::get('/bid/register/{bidId}', BidRegistrations::class)->name('bidregistration');
+Route::get('/bid/registrations/{bidId}', ViewRegistrations::class)->name('viewregistrations');
