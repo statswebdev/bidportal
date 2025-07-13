@@ -43,6 +43,30 @@ class CreateBid extends Component
         ];
     }
 
+    public function updatedIulaanPdf()
+{
+    logger()->info('File Info', [
+        'originalName' => $this->iulaan_pdf->getClientOriginalName(),
+        'size' => $this->iulaan_pdf->getSize(),
+        'mime' => $this->iulaan_pdf->getMimeType(),
+    ]);
+}
+
+    public function updatedInfoSheetPdf()
+    {
+        $this->validateOnly('info_sheet_pdf');
+    }
+
+    public function updatedSpecSheetPdf()
+    {
+        $this->validateOnly('spec_sheet_pdf');
+    }
+
+    public function updatedSupportingDocs()
+    {
+        $this->validateOnly('supporting_docs');
+    }
+
     public function submitBid()
     {
         $this->validate();
@@ -89,6 +113,8 @@ class CreateBid extends Component
             session()->flash('error', 'Failed to create bid. Please try again.');
         }
     }
+
+
 
     public function mount()
     {
