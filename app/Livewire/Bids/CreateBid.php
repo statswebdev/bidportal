@@ -29,10 +29,10 @@ class CreateBid extends Component
         'iulaan_number' => 'required|string|max:50|unique:bids,iulaan_number',
         'phone' => 'required|string|max:20',
         'submission_date' => 'required|date',
-        'iulaan_pdf' => 'required|file|mimes:pdf|max:3072', // Max 3MB
-        'info_sheet_pdf' => 'required|file|mimes:pdf|max:3072', // Max 3MB
-        'spec_sheet_pdf' => 'nullable|file|mimes:pdf|max:3072',
-        'supporting_docs' => 'nullable|file|mimes:doc,docx|max:3072',
+        'iulaan_pdf' => 'required|file|mimes:pdf|max:2048', // Max 2MB
+        'info_sheet_pdf' => 'required|file|mimes:pdf|max:2048', // Max 2MB
+        'spec_sheet_pdf' => 'nullable|file|mimes:pdf|max:2048',
+        'supporting_docs' => 'nullable|file|mimes:doc,docx|max:2048',
     ];
 
     protected function messages()
