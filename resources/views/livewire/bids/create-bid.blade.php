@@ -108,40 +108,7 @@
                                     <div class="invalid-feedback d-flex">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="mb-3 col-12 col-md-6">
-                                <label class="form-label" for="specpdf">Specification Sheet (PDF)</label>
-                                <div class="rounded-2 min-h-0">
-                                    <input name="file" type="file" id="specpdf" class="form-control"
-                                        wire:model.defer="spec_sheet_pdf" />
-
-                                    @if ($spec_sheet_pdf)
-                                        <button type="button" wire:click="$set('supporting_docs', null)"
-                                            class="btn btn-sm btn-outline-danger mt-2">
-                                            Clear File
-                                        </button>
-                                    @endif
-                                </div>
-                                @error('spec_sheet_pdf')
-                                    <div class="invalid-feedback d-flex">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col-12 col-md-6">
-                                <label class="form-label" for="supportingpdf">Supporting Docs (Word only)</label>
-                                <div class="rounded-2 min-h-0">
-                                    <input name="file" type="file" id="supportingpdf" class="form-control"
-                                        wire:model.defer="supporting_docs" />
-
-                                    @if ($supporting_docs)
-                                        <button type="button" wire:click="$set('supporting_docs', null)"
-                                            class="btn btn-sm btn-outline-danger mt-2">
-                                            Clear File
-                                        </button>
-                                    @endif
-                                </div>
-                                @error('supporting_docs')
-                                    <div class="invalid-feedback d-flex">{{ $message }}</div>
-                                @enderror
-                            </div>
+                            
                             <div class="mb-3 col-12 col-md-12">
                                 <button type="submit" class="btn btn-primary">
                                     Submit
