@@ -156,7 +156,7 @@
                                             @if ($pastbid->spec_sheet_pdf)
                                                 <br><a href="{{ Storage::url($pastbid->spec_sheet_pdf) }}" target="_blank">
                                                     <span class="badge bg-warning-soft mt-2">Specification
-                                                        Sheet</span></a><br>
+                                                        Sheet</span></a>
                                             @endif
                                             @if ($pastbid->supporting_docs)
                                                 <br><a href="{{ Storage::url($pastbid->supporting_docs) }}"
