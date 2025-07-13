@@ -51,23 +51,23 @@
                         <!-- Form -->
                         <form wire:submit.prevent="submitBid" class="row">
                             <div class="mb-3 col-12 col-md-6">
-                                <label class="form-label" for="fname">Bid Description</label>
-                                <input type="text" id="fname" class="form-control" placeholder="Bid Description"
+                                <label class="form-label" for="desc">Bid Description</label>
+                                <input type="text" id="desc" class="form-control" placeholder="Bid Description"
                                     wire:model="description">
                                 @error('description')
                                     <div class="invalid-feedback d-flex">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3 col-12 col-md-6">
-                                <label class="form-label" for="fname">Bid Description (Dhivehi)</label>
-                                <input type="text" id="fname" class="form-control thaana text-end mvtypewriter" placeholder="ބިޑްގެ ނަން" wire:model.debounce.300ms="description_mv">
+                                <label class="form-label" for="descmv">Bid Description (Dhivehi)</label>
+                                <input type="text" id="descmv" class="form-control thaana text-end mvtypewriter" placeholder="ބިޑްގެ ނަން" wire:model.debounce.300ms="description_mv">
                                 @error('description_mv')
                                     <div class="invalid-feedback d-flex">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3 col-12 col-md-12">
-                                <label class="form-label" for="lname">Iulaan Number</label>
-                                <input type="text" id="lname" class="form-control" placeholder="Iulaan Number"
+                                <label class="form-label" for="iulaan">Iulaan Number</label>
+                                <input type="text" id="iulaan" class="form-control" placeholder="Iulaan Number"
                                     wire:model="iulaan_number">
                                 @error('iulaan_number')
                                     <div class="invalid-feedback d-flex">{{ $message }}</div>
@@ -82,37 +82,37 @@
                                 @enderror
                             </div>
                             <div class="mb-3 col-12 col-md-6">
-                                <label class="form-label" for="lname">Bid Registration Deadline</label>
-                                <input type="datetime-local" id="selectDate"
+                                <label class="form-label" for="regdate">Bid Registration Deadline</label>
+                                <input type="datetime-local" id="regdate"
                                     class="form-control"placeholder="Bid Submission Date" wire:model="submission_date">
                                 @error('submission_date')
                                     <div class="invalid-feedback d-flex">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3 col-12 col-md-6">
-                                <label class="form-label" for="lname">Iulaan (PDF)</label>
+                                <label class="form-label" for="iulaanpdf">Iulaan (PDF)</label>
                                 <div class="rounded-2 min-h-0">
-                                    <input name="file" type="file" class="form-control" wire:model="iulaan_pdf" />
+                                    <input name="file" type="file" id="iulaanpdf" class="form-control" wire:model.defer="iulaan_pdf" />
                                 </div>
                                 @error('iulaan_pdf')
                                     <div class="invalid-feedback d-flex">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3 col-12 col-md-6">
-                                <label class="form-label" for="lname">Information Sheet (PDF)</label>
+                                <label class="form-label" for="infopdf">Information Sheet (PDF)</label>
                                 <div class="rounded-2 min-h-0">
-                                    <input name="file" type="file" class="form-control"
-                                        wire:model="info_sheet_pdf" />
+                                    <input name="file" type="file" id="infopdf" class="form-control"
+                                        wire:model.defer="info_sheet_pdf" />
                                 </div>
                                 @error('info_sheet_pdf')
                                     <div class="invalid-feedback d-flex">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3 col-12 col-md-6">
-                                <label class="form-label" for="lname">Specification Sheet (PDF)</label>
+                                <label class="form-label" for="specpdf">Specification Sheet (PDF)</label>
                                 <div class="rounded-2 min-h-0">
-                                    <input name="file" type="file" class="form-control"
-                                        wire:model="spec_sheet_pdf" />
+                                    <input name="file" type="file" id="specpdf" class="form-control"
+                                        wire:model.defer="spec_sheet_pdf" />
 
                                     @if ($spec_sheet_pdf)
                                         <button type="button" wire:click="$set('supporting_docs', null)"
@@ -126,10 +126,10 @@
                                 @enderror
                             </div>
                             <div class="mb-3 col-12 col-md-6">
-                                <label class="form-label" for="lname">Supporting Docs (Word only)</label>
+                                <label class="form-label" for="supportingpdf">Supporting Docs (Word only)</label>
                                 <div class="rounded-2 min-h-0">
-                                    <input name="file" type="file" class="form-control"
-                                        wire:model="supporting_docs" />
+                                    <input name="file" type="file" id="supportingpdf" class="form-control"
+                                        wire:model.defer="supporting_docs" />
 
                                     @if ($supporting_docs)
                                         <button type="button" wire:click="$set('supporting_docs', null)"
