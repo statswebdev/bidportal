@@ -49,17 +49,17 @@ class CreateBid extends Component
 
         try {
             // Store the uploaded files
-            $iulaanPdfPath = $this->iulaan_pdf->store('bids', 'public');
-            $infoSheetPdfPath = $this->info_sheet_pdf->store('bids', 'public');
+            $iulaanPdfPath = $this->iulaan_pdf->store('bids/iulaan', 'public');
+            $infoSheetPdfPath = $this->info_sheet_pdf->store('bids/info-sheets', 'public');
 
             $specSheetPdfPath = null;
             if ($this->spec_sheet_pdf && $this->spec_sheet_pdf->getClientOriginalExtension() === 'pdf') {
-                $specSheetPdfPath = $this->spec_sheet_pdf->store('bids', 'public');
+                $specSheetPdfPath = $this->spec_sheet_pdf->store('bids/spec-sheets', 'public');
             }
 
             $supportingDocsPath = null;
             if ($this->supporting_docs && in_array($this->supporting_docs->getClientOriginalExtension(), ['doc', 'docx'])) {
-                $supportingDocsPath = $this->supporting_docs->store('bids', 'public');
+                $supportingDocsPath = $this->supporting_docs->store('bids/supporting-docs', 'public');
             }
 
             // Create a new bid entry
