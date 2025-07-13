@@ -40,10 +40,6 @@ class CreateBid extends Component
         return [
             'description.required' => 'Description is required.',
             'description_mv.required' => 'Dhivehi description is required.',
-            'iulaan_pdf.max' => 'Iulaan PDF must not exceed 1MB.',
-            'info_sheet_pdf.max' => 'Information Sheet PDF must not exceed 1MB.',
-            'spec_sheet_pdf.max' => 'Specification Sheet PDF must not exceed 1MB.',
-            'supporting_docs.max' => 'Supporting documents must not exceed 1MB.',
         ];
     }
 
