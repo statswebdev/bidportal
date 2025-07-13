@@ -145,7 +145,7 @@
                                         <td><span>{{ $pastbid->description }}</span><br><span
                                                 class="mvtypewriter ">{{ $pastbid->description_mv }}</span></td>
                                         <td>{{ $pastbid->iulaan_number }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($bid->submission_date)->format('d-m-Y H:i') }}
+                                        <td>{{ \Carbon\Carbon::parse($pastbid->submission_date)->format('d-m-Y H:i') }}
                                         </td>
                                         <td>
                                             <a href="{{ Storage::url($pastbid->iulaan_pdf) }}" target="_blank"><span
