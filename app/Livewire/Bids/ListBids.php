@@ -12,7 +12,7 @@ class ListBids extends Component
 
     public function mount()
     {
-        $this->bids = Bid::where('status', 'active')->get();
+        $this->bids = Bid::where('status', 'active')->orderBy('id', 'asc')->get();
         $this->pastbids = Bid::where('status', 'completed')->get();
     }
 
