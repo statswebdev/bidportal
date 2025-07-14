@@ -67,7 +67,7 @@
                                             @if ($bid->spec_sheet_pdf)
                                                 <br><a href="{{ Storage::url($bid->spec_sheet_pdf) }}" target="_blank">
                                                     <span class="badge bg-warning-soft mt-2">Specification
-                                                        Sheet</span></a><br>
+                                                        Sheet</span></a>
                                             @endif
                                             @if ($bid->supporting_docs)
                                                 <br><a href="{{ Storage::url($bid->supporting_docs) }}"
