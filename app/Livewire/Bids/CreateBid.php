@@ -68,7 +68,7 @@ class CreateBid extends Component
         $this->validate();
 
         try {
-            $slug = str_replace(' ', '_', $this->iulaan_number ?? uniqid());
+            $slug = str_replace('/', '-', $this->iulaan_number ?? uniqid());
 
             // Iulaan PDF
             $iulaanPdfPath = null;
