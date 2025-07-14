@@ -43,26 +43,6 @@ class CreateBid extends Component
         ];
     }
 
-    public function updatedIulaanPdf()
-    {
-        $this->validateOnly('iulaan_pdf');
-    }
-
-    public function updatedInfoSheetPdf()
-    {
-        $this->validateOnly('info_sheet_pdf');
-    }
-
-    public function updatedSpecSheetPdf()
-    {
-        $this->validateOnly('spec_sheet_pdf');
-    }
-
-    public function updatedSupportingDocs()
-    {
-        $this->validateOnly('supporting_docs');
-    }
-
     public function submitBid()
     {
         $this->validate();
