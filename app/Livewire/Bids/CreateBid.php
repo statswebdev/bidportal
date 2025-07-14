@@ -68,19 +68,49 @@ class CreateBid extends Component
         $this->validate();
 
         try {
-            // Store the uploaded files
-            $iulaanPdfPath = $this->iulaan_pdf->store('bids/iulaan', 'public');
-            $infoSheetPdfPath = $this->info_sheet_pdf->store('bids/info-sheets', 'public');
+            $slug = str_replace(' ', '_', $this->iulaan_number ?? uniqid());
 
+            // Iulaan PDF
+            $iulaanPdfPath = null;
+            if ($this->iulaan_pdf) {
+                $iulaanFilename = $slug . '_iulaan.pdf';
+                $iulaanPdfPath = $this->iulaan_pdf->storeAs('bids/iulaan', $iulaanFilename, 'public');
+            }
+
+            // Info Sheet PDF
+            $infoSheetPdfPath = null;
+            if ($this->info_sheet_pdf) {
+                $infoSheetFilename = $slug . '_info_sheet.pdf';
+                $infoSheetPdfPath = $this->info_sheet_pdf->storeAs('bids/info-sheets', $infoSheetFilename, 'public');
+            }
+
+            // Spec Sheet PDF
             $specSheetPdfPath = null;
             if ($this->spec_sheet_pdf && $this->spec_sheet_pdf->getClientOriginalExtension() === 'pdf') {
-                $specSheetPdfPath = $this->spec_sheet_pdf->store('bids/spec-sheets', 'public');
+                $specSheetFilename = $slug . '_spec_sheet.pdf';
+                $specSheetPdfPath = $this->spec_sheet_pdf->storeAs('bids/spec-sheets', $specSheetFilename, 'public');
             }
 
+            // Supporting Docs
             $supportingDocsPath = null;
             if ($this->supporting_docs && in_array($this->supporting_docs->getClientOriginalExtension(), ['doc', 'docx'])) {
-                $supportingDocsPath = $this->supporting_docs->store('bids/supporting-docs', 'public');
+                $supportingDocsFilename = $slug . '_supporting_docs.' . $this->supporting_docs->getClientOriginalExtension();
+                $supportingDocsPath = $this->supporting_docs->storeAs('bids/supporting-docs', $supportingDocsFilename, 'public');
             }
+
+            // Store the uploaded files
+            // $iulaanPdfPath = $this->iulaan_pdf->store('bids/iulaan', 'public');
+            // $infoSheetPdfPath = $this->info_sheet_pdf->store('bids/info-sheets', 'public');
+
+            // $specSheetPdfPath = null;
+            // if ($this->spec_sheet_pdf && $this->spec_sheet_pdf->getClientOriginalExtension() === 'pdf') {
+            //     $specSheetPdfPath = $this->spec_sheet_pdf->store('bids/spec-sheets', 'public');
+            // }
+
+            // $supportingDocsPath = null;
+            // if ($this->supporting_docs && in_array($this->supporting_docs->getClientOriginalExtension(), ['doc', 'docx'])) {
+            //     $supportingDocsPath = $this->supporting_docs->store('bids/supporting-docs', 'public');
+            // }
 
             // Create a new bid entry
             Bid::create([
