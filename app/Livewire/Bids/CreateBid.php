@@ -44,13 +44,9 @@ class CreateBid extends Component
     }
 
     public function updatedIulaanPdf()
-{
-    logger()->info('File Info', [
-        'originalName' => $this->iulaan_pdf->getClientOriginalName(),
-        'size' => $this->iulaan_pdf->getSize(),
-        'mime' => $this->iulaan_pdf->getMimeType(),
-    ]);
-}
+    {
+        $this->validateOnly('iulaan_pdf');
+    }
 
     public function updatedInfoSheetPdf()
     {
