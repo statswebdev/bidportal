@@ -31,6 +31,7 @@
             },
             pageLength: 10,
             lengthChange: false,
+            ordering: false,
             dom: 'Bfrtip',
             buttons: []
         });
@@ -42,6 +43,7 @@
                     search: "Search:"
                 },
                 pageLength: 10,
+                ordering: false,
                 lengthChange: false
             });
         });
