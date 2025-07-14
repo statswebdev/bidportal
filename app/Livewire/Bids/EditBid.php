@@ -87,7 +87,7 @@ class EditBid extends Component
     {
         $this->validate();
 
-        $slug = str_replace(' ', '_', $this->iulaan_number) . '_' . time();
+        $slug = str_replace(' ', '_', $this->iulaan_number ?? uniqid());
 
         // Handle iulaan PDF upload
         if ($this->iulaan_pdf) {
