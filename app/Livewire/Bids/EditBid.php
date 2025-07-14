@@ -68,7 +68,7 @@ class EditBid extends Component
         }
 
         $this->bid = Bid::findOrFail($bidid);
-        
+
         // Load existing data
         $this->description = $this->bid->description;
         $this->description_mv = $this->bid->description_mv;
@@ -87,45 +87,87 @@ class EditBid extends Component
     {
         $this->validate();
 
+        $slug = str_replace(' ', '_', $this->iulaan_number) . '_' . time();
+
         // Handle iulaan PDF upload
         if ($this->iulaan_pdf) {
-            // Delete old file if exists
             if ($this->bid->iulaan_pdf) {
                 Storage::disk('public')->delete($this->bid->iulaan_pdf);
             }
-            $iulaanPath = $this->iulaan_pdf->store('bids/iulaan', 'public');
+            $iulaanFilename = $slug . '_iulaan.pdf';
+            $iulaanPath = $this->iulaan_pdf->storeAs('bids/iulaan', $iulaanFilename, 'public');
             $this->bid->iulaan_pdf = $iulaanPath;
         }
 
         // Handle info sheet PDF upload
         if ($this->info_sheet_pdf) {
-            // Delete old file if exists
             if ($this->bid->info_sheet_pdf) {
                 Storage::disk('public')->delete($this->bid->info_sheet_pdf);
             }
-            $infoSheetPath = $this->info_sheet_pdf->store('bids/info-sheets', 'public');
+            $infoSheetFilename = $slug . '_info_sheet.pdf';
+            $infoSheetPath = $this->info_sheet_pdf->storeAs('bids/info-sheets', $infoSheetFilename, 'public');
             $this->bid->info_sheet_pdf = $infoSheetPath;
         }
 
         // Handle spec sheet PDF upload
         if ($this->spec_sheet_pdf) {
-            // Delete old file if exists
             if ($this->bid->spec_sheet_pdf) {
                 Storage::disk('public')->delete($this->bid->spec_sheet_pdf);
             }
-            $specSheetPath = $this->spec_sheet_pdf->store('bids/spec-sheets', 'public');
+            $specSheetFilename = $slug . '_spec_sheet.pdf';
+            $specSheetPath = $this->spec_sheet_pdf->storeAs('bids/spec-sheets', $specSheetFilename, 'public');
             $this->bid->spec_sheet_pdf = $specSheetPath;
         }
 
         // Handle supporting docs upload
         if ($this->supporting_docs) {
-            // Delete old file if exists
             if ($this->bid->supporting_docs) {
                 Storage::disk('public')->delete($this->bid->supporting_docs);
             }
-            $supportingdocsPath = $this->supporting_docs->store('bids/supporting-docs', 'public');
+            $supportingDocsFilename = $slug . '_supporting_docs.' . $this->supporting_docs->getClientOriginalExtension();
+            $supportingdocsPath = $this->supporting_docs->storeAs('bids/supporting-docs', $supportingDocsFilename, 'public');
             $this->bid->supporting_docs = $supportingdocsPath;
         }
+
+        // // Handle iulaan PDF upload
+        // if ($this->iulaan_pdf) {
+        //     // Delete old file if exists
+        //     if ($this->bid->iulaan_pdf) {
+        //         Storage::disk('public')->delete($this->bid->iulaan_pdf);
+        //     }
+        //     $iulaanPath = $this->iulaan_pdf->store('bids/iulaan', 'public');
+        //     $this->bid->iulaan_pdf = $iulaanPath;
+        // }
+
+        // // Handle info sheet PDF upload
+        // if ($this->info_sheet_pdf) {
+        //     // Delete old file if exists
+        //     if ($this->bid->info_sheet_pdf) {
+        //         Storage::disk('public')->delete($this->bid->info_sheet_pdf);
+        //     }
+        //     $infoSheetPath = $this->info_sheet_pdf->store('bids/info-sheets', 'public');
+        //     $this->bid->info_sheet_pdf = $infoSheetPath;
+        // }
+
+        // // Handle spec sheet PDF upload
+        // if ($this->spec_sheet_pdf) {
+        //     // Delete old file if exists
+        //     if ($this->bid->spec_sheet_pdf) {
+        //         Storage::disk('public')->delete($this->bid->spec_sheet_pdf);
+        //     }
+        //     $specSheetPath = $this->spec_sheet_pdf->store('bids/spec-sheets', 'public');
+        //     $this->bid->spec_sheet_pdf = $specSheetPath;
+        // }
+
+        // // Handle supporting docs upload
+        // if ($this->supporting_docs) {
+        //     // Delete old file if exists
+        //     if ($this->bid->supporting_docs) {
+        //         Storage::disk('public')->delete($this->bid->supporting_docs);
+        //     }
+        //     $supportingdocsPath = $this->supporting_docs->store('bids/supporting-docs', 'public');
+        //     $this->bid->supporting_docs = $supportingdocsPath;
+        // }
 
         // Update other fields
         $this->bid->description = $this->description;
