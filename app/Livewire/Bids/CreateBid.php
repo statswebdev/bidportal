@@ -43,6 +43,17 @@ class CreateBid extends Component
         ];
     }
 
+
+    protected function attributes()
+    {
+        return [
+            'iulaan_pdf' => 'Iulaan PDF',
+            'info_sheet_pdf' => 'Information Sheet',
+            'spec_sheet_pdf' => 'Specification Sheet',
+            'supporting_docs' => 'Supporting Document',
+        ];
+    }
+
     public function submitBid()
     {
         $this->validate();
