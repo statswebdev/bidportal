@@ -8,6 +8,8 @@ use Livewire\WithFileUploads;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Log;
+
 
 class CreateBid extends Component
 {
@@ -52,6 +54,17 @@ class CreateBid extends Component
             'spec_sheet_pdf' => 'Specification Sheet',
             'supporting_docs' => 'Supporting Document',
         ];
+    }
+
+    public function updatedIulaanPdf()
+    {
+        try {
+            $this->validateOnly('iulaan_pdf');
+        } catch (\Exception $e) {
+            Log::error('File upload error: ' . $e->getMessage());
+            
+            $this->addError('iulaan_pdf', __('validation.upload_failed', ['attribute' => 'Iulaan PDF']));
+        }
     }
 
     public function submitBid()
