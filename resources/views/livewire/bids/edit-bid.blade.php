@@ -93,7 +93,7 @@
                             <!-- Iulaan PDF -->
                             <div class="mb-3 col-12 col-md-6">
                                 <label class="form-label" for="iulaan_pdf">Iulaan (PDF)</label>
-                                <input type="file" id="iulaan_pdf" class="form-control" wire:model.defer="iulaan_pdf">
+                                <input type="file" id="iulaan_pdf" class="form-control" wire:model="iulaan_pdf">
                                 @if ($currentIulaanPdf)
                                     <small>Current File: <a href="{{ Storage::url($currentIulaanPdf) }}"
                                             target="_blank">View PDF</a></small>
@@ -106,7 +106,7 @@
                             <div class="mb-3 col-12 col-md-6">
                                 <label class="form-label" for="info_sheet_pdf">Information Sheet (PDF)</label>
                                 <input type="file" id="info_sheet_pdf" class="form-control"
-                                    wire:model.defer="info_sheet_pdf">
+                                    wire:model="info_sheet_pdf">
                                 @if ($currentInfoSheetPdf)
                                     <small>Current File: <a href="{{ Storage::url($currentInfoSheetPdf) }}"
                                             target="_blank">View PDF</a></small>
@@ -119,7 +119,7 @@
                             <div class="mb-3 col-12 col-md-6">
                                 <label class="form-label" for="spec_sheet_pdf">Specification Sheet (PDF)</label>
                                 <input type="file" id="spec_sheet_pdf" class="form-control"
-                                    wire:model.defer="spec_sheet_pdf">
+                                    wire:model="spec_sheet_pdf">
                                 @if ($currentSpecSheetPdf)
                                     <small>Current File: <a href="{{ Storage::url($currentSpecSheetPdf) }}"
                                             target="_blank">View PDF</a></small>
@@ -132,7 +132,7 @@
                             <div class="mb-3 col-12 col-md-6">
                                 <label class="form-label" for="supporting_docs">Supporting Documents (Word Only)</label>
                                 <input type="file" id="supporting_docs" class="form-control"
-                                    wire:model.defer="supporting_docs">
+                                    wire:model="supporting_docs">
                                 @if ($currentSupportingDocs)
                                     <small>Current File: <a href="{{ Storage::url($currentSupportingDocs) }}"
                                             target="_blank">View PDF</a></small>
