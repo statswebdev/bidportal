@@ -113,7 +113,7 @@
                                     <input type="file" id="specpdf" class="form-control" wire:model="spec_sheet_pdf" />
 
                                     @if ($spec_sheet_pdf)
-                                        <button type="button" wire:click="$set('supporting_docs', null)"
+                                        <button type="button" wire:click="$set('spec_sheet_pdf', null)"
                                             class="btn btn-sm btn-outline-danger mt-2">
                                             Clear File
                                         </button>

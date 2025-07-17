@@ -60,7 +60,8 @@
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label class="form-label" for="description_mv">Bid Description (Dhivehi)</label>
-                                <input type="text" id="description_mv" dir="rtl" class="form-control mvtypewriter thaana" placeholder="ބިޑްގެ ނަން"
+                                <input type="text" id="description_mv" dir="rtl"
+                                    class="form-control mvtypewriter thaana" placeholder="ބިޑްގެ ނަން"
                                     wire:model.debounce.300ms="description_mv">
                                 @error('description_mv')
                                     <div class="invalid-feedback d-flex">{{ $message }}</div>
@@ -120,6 +121,12 @@
                                 <label class="form-label" for="spec_sheet_pdf">Specification Sheet (PDF)</label>
                                 <input type="file" id="spec_sheet_pdf" class="form-control"
                                     wire:model="spec_sheet_pdf">
+                                @if ($spec_sheet_pdf)
+                                    <button type="button" wire:click="$set('spec_sheet_pdf', null)"
+                                        class="btn btn-sm btn-outline-danger mt-2">
+                                        Clear File
+                                    </button>
+                                @endif    
                                 @if ($currentSpecSheetPdf)
                                     <small>Current File: <a href="{{ Storage::url($currentSpecSheetPdf) }}"
                                             target="_blank">View PDF</a></small>
@@ -130,9 +137,16 @@
                             </div>
                             <!-- Supporting Docs -->
                             <div class="mb-3 col-12 col-md-6">
-                                <label class="form-label" for="supporting_docs">Supporting Documents (Word Only)</label>
+                                <label class="form-label" for="supporting_docs">Supporting Documents (Word
+                                    Only)</label>
                                 <input type="file" id="supporting_docs" class="form-control"
                                     wire:model="supporting_docs">
+                                @if ($supporting_docs)
+                                    <button type="button" wire:click="$set('supporting_docs', null)"
+                                        class="btn btn-sm btn-outline-danger mt-2">
+                                        Clear File
+                                    </button>
+                                @endif
                                 @if ($currentSupportingDocs)
                                     <small>Current File: <a href="{{ Storage::url($currentSupportingDocs) }}"
                                             target="_blank">View PDF</a></small>
@@ -144,15 +158,18 @@
                             <label class="form-label" for="lname">Bid Status</label>
                             <div class="mb-3 col-12 col-md-12">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" wire:model="status" value="active" id="active">
+                                    <input class="form-check-input" type="radio" wire:model="status"
+                                        value="active" id="active">
                                     <label class="form-check-label" for="active">Active</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" wire:model="status" value="inactive" id="inactive">
+                                    <input class="form-check-input" type="radio" wire:model="status"
+                                        value="inactive" id="inactive">
                                     <label class="form-check-label" for="inactive">Inactive</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" wire:model="status" value="completed" id="completed">
+                                    <input class="form-check-input" type="radio" wire:model="status"
+                                        value="completed" id="completed">
                                     <label class="form-check-label" for="completed">Completed</label>
                                 </div>
                                 @error('status')
